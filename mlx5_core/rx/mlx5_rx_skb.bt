@@ -1,0 +1,23 @@
+kretfunc:mlx5e_skb_from_cqe_linear {
+  // setting offset to 0, to include everything
+  $ret = skboutput("mlx5e_skb_from_cqe_linear_rcv.pcap", (struct sk_buff *)retval, ((struct sk_buff *)retval)->len, 0);
+  printf("skboutput returns %d\n", $ret);
+}
+
+kretfunc:mlx5e_skb_from_cqe_mpwrq_linear {
+  // setting offset to 0, to include everything
+  $ret = skboutput("mlx5e_skb_from_cqe_mpwrq_linear_rcv.pcap", (struct sk_buff *)retval, ((struct sk_buff *)retval)->len, 0);
+  printf("skboutput returns %d\n", $ret);
+}
+
+kretfunc:mlx5e_skb_from_cqe_nonlinear {
+  // setting offset to 0, to include everything
+  $ret = skboutput("mlx5e_skb_from_cqe_nonlinear_rcv.pcap", (struct sk_buff *)retval, ((struct sk_buff *)retval)->len, 0);
+  printf("skboutput returns %d\n", $ret);
+}
+
+kretfunc:mlx5e_skb_from_cqe_mpwrq_nonlinear {
+  // setting offset to 0, to include everything
+  $ret = skboutput("mlx5e_skb_from_cqe_mpwrq_nonlinear_rcv.pcap", (struct sk_buff *)retval, ((struct sk_buff *)retval)->len, 0);
+  printf("skboutput returns %d\n", $ret);
+}

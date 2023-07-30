@@ -1,0 +1,3 @@
+kprobe:mlx5_read_time {
+  printf("read time real time mode: %d\n", arg2);
+}
