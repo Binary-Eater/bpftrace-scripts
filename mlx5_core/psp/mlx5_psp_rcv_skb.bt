@@ -1,0 +1,5 @@
+kretfunc:mlx5e_nisp_offload_handle_rx_skb {
+  // setting offset to 0, to include everything
+  $ret = skboutput("mlx5e_nisp_offload_handle_rx_skb.pcap", (struct sk_buff *)args->skb, ((struct sk_buff *)args->skb)->len, 0);
+  printf("skboutput returns %d\n", $ret);
+}
