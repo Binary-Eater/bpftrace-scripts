@@ -1,0 +1,12 @@
+#include <linux/mlx5/device.h>
+#include <linux/mlx5/driver.h>
+
+#define MLX5_CAP_MCAM_FEATURE_MUTATE(mdev, fld, val) \
+	MLX5_SET(mcam_reg, (mdev)->caps.mcam, mng_feature_cap_mask.enhanced_features.fld, val)
+
+/* mlx5_ptp_adjfine will call mlx5_ptp_freq_adj_real_time */
+kprobe:mlx5_ptp_adjfine {
+	struct mlx5_core_dev *mdev = arg0;
+
+	MLX5_CAP_MCAM_FEATURE_MUTATE(mdev, mtutc_freq_adj_units, 0);
+}

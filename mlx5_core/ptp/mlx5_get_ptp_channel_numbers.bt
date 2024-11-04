@@ -1,0 +1,23 @@
+/* TODO invoke example */
+#include "en/ptp.h"
+#include "en.h"
+
+kretprobe:mlx5_ptp_open {
+	if (retval) {
+		printf("Failed to allocate PTP queues due to error %d\n", retval);
+		return;
+	}
+
+	$c = (struct mlx5e_ptp *)(*((struct mlx5e_ptp **)arg3));
+
+	$tc = 0;
+	while ($tc < c->num_tc) {
+		$ptpsq = $c->ptpsq[$tc];
+
+		printf("PTP SQ tc #%u: sqn %#x, tx cqn %#x, ts cqn %#x\n",
+		       $tc, $ptpsq.txqsq.cq.mcq.cqn, $ptpsq.ts_cq.mcq.cqn);
+		$tc+=1;
+	}
+
+	printf("PTP RQ: rqn %#x, cqn %#x\n", $c->rq.rqn, $c->rq.cq.mcq.cqn);
+}
