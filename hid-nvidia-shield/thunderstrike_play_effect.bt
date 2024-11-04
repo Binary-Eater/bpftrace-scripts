@@ -1,0 +1,12 @@
+fentry:hid_nvidia_shield:thunderstrike_play_effect {
+    $motor_left = args.effect->u.rumble.strong_magnitude;
+    $motor_right = args.effect->u.rumble.weak_magnitude;
+
+    printf("motor left: %u, motor right: %u\n", $motor_left, $motor_right);
+}
+
+/*
+kprobe:thunderstrike_play_effect {
+    override(-5);
+}
+*/
