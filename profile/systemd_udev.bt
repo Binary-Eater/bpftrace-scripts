@@ -1,0 +1,7 @@
+t:syscalls:sys_enter_* /comm == "systemd-udevd"/ {
+    $c = curtask->parent;
+    if (@[curtask->pid] != 1) {
+      printf("pid: (%d), parent process: %s, parent pid: (%d)\n", curtask->pid, $c->comm, $c->pid);
+    }
+    @[curtask->pid] = 1
+}

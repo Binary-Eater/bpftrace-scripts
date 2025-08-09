@@ -1,0 +1,4 @@
+kprobe:*_uevent {
+    printf("PID: %d, Process Name: %s, kprobe name: %s\n",
+        curtask->pid, curtask->comm, probe);
+}
