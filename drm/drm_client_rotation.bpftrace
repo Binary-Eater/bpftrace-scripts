@@ -1,0 +1,4 @@
+kretfunc:drm_client_rotation {
+    printf("drm_client_rotation: rotation: 0x%x, return: %d\n",
+           *args.rotation, retval);
+}
